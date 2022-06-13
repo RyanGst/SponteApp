@@ -36,7 +36,6 @@ const ContentContainer = styled.View`
 const BackgroundImage = styled.Image.attrs({
   source: require('../../../../../assets/images/image.png'),
 })`
-
   position: absolute;
   left: -0.29%;
   right: 0%;

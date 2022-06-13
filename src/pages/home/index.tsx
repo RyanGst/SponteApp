@@ -1,4 +1,4 @@
-import {View, Text, FlatList, ScrollView} from 'react-native';
+import {FlatList /*  */} from 'react-native';
 import React from 'react';
 import {
   Frame,
@@ -7,6 +7,7 @@ import {
   CollumCenter,
   Header,
   HelpText,
+  Divider,
 } from './styles';
 import {Container} from '../../components/Container';
 import BannerComponent from './components/Banner';
@@ -15,7 +16,7 @@ import ReportCard from './components/Report';
 
 export default function Home() {
   return (
-    <Container>
+    <Container style={{backgroundColor: '#F2F4F8'}}>
       <Background />
       <Frame>
         <Header>
@@ -30,53 +31,46 @@ export default function Home() {
         <CollumCenter>
           <TimelineComponent />
         </CollumCenter>
-
         <CollumCenter>
-          <FlatList horizontal data={data} renderItem={({item}) => <ReportCard item={item} />} />
+          <FlatList
+            horizontal
+            data={data}
+            contentContainerStyle={{paddingBottom: 10, paddingLeft: 24}}
+            showsHorizontalScrollIndicator={false}
+            ItemSeparatorComponent={Divider}
+            renderItem={({item}) => <ReportCard item={item} />}
+          />
         </CollumCenter>
-        {/* <ReportCard>
-            <ReportCard.Title>Resultados</ReportCard.Title>
-            <ReportCard.Row>
-              <ReportCard.Text>
-                Média geral:{' '}
-                <ReportCard.SpecialValue red>8.2</ReportCard.SpecialValue>
-              </ReportCard.Text>
-            </ReportCard.Row>
-            <ReportCard.Row>
-              <ReportCard.Text>
-                Faltas:{' '}
-                <ReportCard.SpecialValue red>42</ReportCard.SpecialValue>
-              </ReportCard.Text>
-            </ReportCard.Row>
-            <ReportCard.Action>Ver mais</ReportCard.Action>
-          </ReportCard>
-
-
-          <ReportCard>
-            <ReportCard.Title>Próximas Aulas</ReportCard.Title>
-            <ReportCard.Row>
-              <ReportCard.Text>
-                7:00:{' '}
-                <ReportCard.SpecialValue red>Matemática</ReportCard.SpecialValue>
-              </ReportCard.Text>
-            </ReportCard.Row>
-            <ReportCard.Row>
-              <ReportCard.Text>
-                8:00:{' '}
-                <ReportCard.SpecialValue red>Inglês</ReportCard.SpecialValue>
-              </ReportCard.Text>
-            </ReportCard.Row>
-            <ReportCard.Action>Ver mais</ReportCard.Action>
-          </ReportCard> */}
       </Frame>
     </Container>
   );
 }
 
 const data: Reports[] = [
-  {title: 'Financeiro', labels: [{text: 'Valor:', value: 'R$ 1.692,00'}, {text: 'Venceu:', value: '15/02'}], actionLabel: 'Pagar'},
-  {title: 'Resultados', labels: [{text: 'Média geral:', value: '8.2'}, {text: 'Faltas:', value: '42'}], actionLabel: 'Ver Mais'},
-  {title: 'Próximas Aulas', labels: [{text: '7:00:', value: 'Matemática'}, {text: '8:00:', value: 'Inglês'}], actionLabel: 'Ver Mais'}
+  {
+    title: 'FINANCEIRO',
+    labels: [
+      {text: 'Valor:', value: {text: 'R$ 1.692,00', color: '#FF5758'}},
+      {text: 'Venceu:', value: {text: '15/02', color: '#FF5758'}},
+    ],
+    actionLabel: 'Pagar',
+  },
+  {
+    title: 'RESULTADOS',
+    labels: [
+      {text: 'Média geral:', value: {text: '8.2', color: '#02C836'}},
+      {text: 'Faltas:', value: {text: '42', color: '#F1C04E'}},
+    ],
+    actionLabel: 'Ver Mais',
+  },
+  {
+    title: 'PRÓXIMAS AULAS',
+    labels: [
+      {text: '7:00:', value: {text: 'Matemática', color: '#46505A'}},
+      {text: '8:00:', value: {text: 'Inglês', color: '#46505A'}},
+    ],
+    actionLabel: 'Ver Mais',
+  },
 ];
 
 export interface Reports {
@@ -87,5 +81,8 @@ export interface Reports {
 
 interface Label {
   text: string;
-  value: string;
+  value: {
+    text: string;
+    color: string;
+  };
 }

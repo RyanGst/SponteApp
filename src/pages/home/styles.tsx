@@ -1,5 +1,4 @@
 import styled from 'styled-components/native';
-import {Container} from '../../components/Container';
 import {BoldText} from '../../components/Text/BoldText';
 import {Paragraph} from '../../components/Text/Paragraph';
 import {colors, fonts} from '../../styles';
@@ -26,7 +25,7 @@ export const Frame = styled.ScrollView.attrs({
   position: relative;
   left: 0px;
   flex-direction: column;
-  padding: 0px 16px 16px;
+  //padding: 0px 16px 16px;
 `;
 
 export const Header = styled.View`
@@ -81,4 +80,8 @@ export const CardTitle = styled.Text`
   font-size: 10px;
   line-height: 12px;
   color: ${colors.black};
+`;
+
+export const Divider = styled.View`
+  width: 8px;
 `;

@@ -1,6 +1,6 @@
-import {View, Text} from 'react-native';
+import {View} from 'react-native';
 import React from 'react';
-import styled, {css} from 'styled-components/native';
+import styled from 'styled-components/native';
 import {colors} from '../../../../styles';
 
 interface ProgressProps {

@@ -1,16 +1,10 @@
-import {
-  FlatList,
-  Animated,
-  NativeSyntheticEvent,
-  NativeScrollEvent,
-} from 'react-native';
+import {FlatList, NativeSyntheticEvent, NativeScrollEvent} from 'react-native';
 import React, {useMemo, useRef, useState} from 'react';
 import {Container} from '../../components/Container';
 import CarouselItem from './components/CarouselItem';
 import styled from 'styled-components/native';
 import {width} from '../../styles';
 import HandlerComponent from './components/BottomHandler';
-import {useNavigation} from '@react-navigation/native';
 import {Props} from '../../routes/auth.routes';
 
 export default function Intro({navigation}: Props) {
@@ -45,7 +39,9 @@ export default function Intro({navigation}: Props) {
   };
 
   const handleNavigator = (position: number) => {
-    if (current == 2 && position == 1) return navigation.navigate('SignIn');
+    if (current == 2 && position == 1) {
+      return navigation.navigate('SignIn');
+    }
     flatListRef.current?.scrollToIndex({
       animated: true,
       index: Math.max(current + position, 0),

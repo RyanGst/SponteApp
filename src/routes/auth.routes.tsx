@@ -5,7 +5,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import HeaderComponent from '../components/Header';
 import Intro from '../pages/intro';
 
-import type { StackScreenProps } from '@react-navigation/stack';
+import type {StackScreenProps} from '@react-navigation/stack';
 
 type AuthRoutesParamList = {
   SignIn: undefined;

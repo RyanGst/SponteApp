@@ -1,4 +1,3 @@
-import {View, Text} from 'react-native';
 import React from 'react';
 import styled from 'styled-components/native';
 import {CardTitle} from '../../styles';
@@ -10,7 +9,7 @@ export default function TimelineComponent() {
     <TimelineCard>
       <CardRow>
         <Badge value="+9" />
-        <CardTitle>  AVISOS E EVENTOS</CardTitle>
+        <CardTitle> AVISOS E EVENTOS</CardTitle>
       </CardRow>
       <CardRow>
         <CardCollum>
@@ -92,7 +91,8 @@ const CardCollum = styled.View<{isLarge?: boolean}>`
 const Activity = styled.View<{isFocused?: boolean}>`
   align-items: flex-start;
   padding: 8px 12px;
-  background-color: ${props => (props.isFocused ? colors.primary : colors.darkGray)};
+  background-color: ${props =>
+    props.isFocused ? colors.primary : colors.darkGray};
   border-radius: 12px;
   margin: 2px 0px;
   flex-basis: auto;

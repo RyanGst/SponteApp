@@ -12,16 +12,18 @@ interface ReportProps {
 export default function ReportCard(props: ReportProps) {
   return (
     <Card>
-      <CardText>{props.item.title}</CardText>
+      <CardText isCapitalized>{props.item.title}</CardText>
       <CardContent>
-        <CardText>
-          Valor: <CardText>R$ 1.692,00</CardText>
-        </CardText>
-        <CardText>
-          Venceu: <CardText>15/02</CardText>
-        </CardText>
+        {props.item.labels.map((label, key) => (
+          <CardText key={key}>
+            {label.text}{' '}
+            <CardText isBold color={label.value.color}>
+              {label.value.text}
+            </CardText>
+          </CardText>
+        ))}
       </CardContent>
-      <Action>Pagar</Action>
+      <Action>{props.item.actionLabel}</Action>
     </Card>
   );
 }
@@ -35,28 +37,35 @@ const Action = styled(BoldText)`
 const Card = styled.View.attrs({
   elevation: 2.5,
 })`
+  flex: 1;
   flex-direction: column;
-  justify-content: center;
   align-items: flex-start;
-  padding: 12px 8px 12px 12px;
+  padding: 12px;
   background-color: ${colors.background};
+  width: 138.33px;
+  border-radius: 12px;
 `;
 
 interface TextProps {
   isCapitalized?: boolean;
+  isBold?: boolean;
   color?: string;
 }
 
-const CardText = styled(Paragraph)<TextProps>`
+const CardText = styled(Paragraph).attrs({
+  elevation: 2.5,
+})<TextProps>`
   font-size: 10px;
   line-height: 12px;
+  padding: 0px;
   color: ${props => (props.color ? props.color : colors.black)};
-  ${props => props.isCapitalized && 'text-transform: upppercase'}
+  ${props => props.isCapitalized && 'text-transform: uppercase'}
+  ${props => props.isBold && 'font-family: Montserrat-Bold'}
 `;
 
 const CardContent = styled.View`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  padding: 0px;
+  padding: 12px 0px;
 `;

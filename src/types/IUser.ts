@@ -1,5 +1,5 @@
 export interface IUser {
-    email: string;
-    password: string;
-    access_token?: string;
+  email: string;
+  password: string;
+  access_token?: string;
 }

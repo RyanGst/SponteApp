@@ -12,4 +12,4 @@ const guidelineBaseWidth: number = 330;
 
 const scale = (size: number): number => (width / guidelineBaseWidth) * size;
 
-export {colors, fonts, scale,  width};
+export {colors, fonts, scale, width};

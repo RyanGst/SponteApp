@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import { colors, fonts } from '../../styles';
+import {colors, fonts} from '../../styles';
 
 export const Paragraph = styled.Text`
   font-family: ${fonts.medium};

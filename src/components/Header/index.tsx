@@ -1,14 +1,14 @@
 import {StatusBar, TouchableOpacity} from 'react-native';
 import React from 'react';
 import styled from 'styled-components/native';
-import {StackHeaderProps} from '@react-navigation/stack';
 import {colors} from '../../styles';
 import Button from '../Button';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {BoldText} from '../Text/BoldText';
 import {useAuth} from '../../contexts/auth/AuthContext';
+import {BottomTabHeaderProps} from '@react-navigation/bottom-tabs';
 
-interface HeaderProps extends StackHeaderProps {
+interface HeaderProps extends BottomTabHeaderProps {
   isFilled?: boolean;
 }
 
@@ -39,17 +39,20 @@ export default function HeaderComponent(props: HeaderProps) {
           }
         />
       </Content>
-      {props.route.name !== 'SignIn' && !props.isFilled ? (
+      {!props.isFilled && props.route.name !== 'SignIn' && (
         <Button onPress={() => props.navigation.navigate('SignIn')}>
           Entrar
         </Button>
-      ) : (
+      )}
+      {props.isFilled && (
         <SwapUser>
           <TextContainer>
-            <UserName numberOfLines={1} ellipsizeMode="middle">{user?.email}</UserName>
+            <UserName numberOfLines={1} ellipsizeMode="middle">
+              {user?.email}
+            </UserName>
             <UserClass>Turma - Período (Ano)</UserClass>
           </TextContainer>
-          <UserPhoto resizeMode='cover'/>
+          <UserPhoto resizeMode="cover" />
         </SwapUser>
       )}
     </Row>
@@ -58,15 +61,14 @@ export default function HeaderComponent(props: HeaderProps) {
 
 const UserPhoto = styled.Image.attrs({
   source: require('../../../assets/images/profile.png'),
-})`
-
-`;
+})``;
 
 const UserName = styled(BoldText)`
   font-size: 12px;
   line-height: 16px;
   text-align: right;
   flex-wrap: wrap;
+  flex-grow: 0;
 `;
 
 const UserClass = styled(BoldText)`
@@ -82,8 +84,7 @@ const SwapUser = styled.View`
   background: rgba(0, 0, 0, 0.4);
   border-radius: 20px;
   align-items: center;
-  flex-grow: 0;
-  max-width: 161px;
+  width: 170px;
 `;
 
 const TextContainer = styled.View`

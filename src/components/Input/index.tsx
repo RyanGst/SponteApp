@@ -1,5 +1,5 @@
-import {Animated, TextInput, TextInputProps} from 'react-native';
-import React, {useEffect, useRef, useState} from 'react';
+import {Animated, TextInputProps} from 'react-native';
+import React, {useEffect, useState} from 'react';
 import styled from 'styled-components/native';
 import {colors, fonts} from '../../styles';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -17,14 +17,16 @@ const Input = React.forwardRef((props: InputProps, ref) => {
   const [labelAnimation] = useState(new Animated.Value(0));
 
   useEffect(() => {
-    if (!focused && props.value) return;
+    if (!focused && props.value) {
+      return;
+    }
 
     Animated.timing(labelAnimation, {
       toValue: focused ? 1 : 0,
       duration: 200,
       useNativeDriver: false,
     }).start();
-  }, [focused]);
+  }, [focused, labelAnimation, props.value]);
 
   return (
     <Field>
@@ -36,7 +38,7 @@ const Input = React.forwardRef((props: InputProps, ref) => {
               style={{
                 top: labelAnimation.interpolate({
                   inputRange: [0, 1],
-                  outputRange: [15, 0],
+                  outputRange: [10, -6],
                 }),
                 fontSize: labelAnimation.interpolate({
                   inputRange: [0, 1],
@@ -50,6 +52,7 @@ const Input = React.forwardRef((props: InputProps, ref) => {
               {props.placeholder}
             </Label>
             <InputText
+              //@ts-ignore
               ref={ref}
               hitSlop={{top: 80, bottom: 80, left: 50, right: 50}}
               returnKeyType={props.returnKeyType}
@@ -97,14 +100,18 @@ const InputContainer = styled.View<FocusedProps>`
   padding: 0px 12px;
   background: ${props =>
     props.isFocused ? colors.background : colors.lightGray};
-  height: 48px;
+  min-height: 48px;
   border: 1px solid ${props => validateProps(props.isFocused, props.error)};
   border-radius: 24px;
 `;
 
 function validateProps(isFocused: boolean, error?: boolean): string {
-  if (error) return colors.error;
-  if (!error && isFocused) return colors.primary;
+  if (error) {
+    return colors.error;
+  }
+  if (!error && isFocused) {
+    return colors.primary;
+  }
   return colors.mediumGray;
 }
 
@@ -140,6 +147,6 @@ const InputText = styled.TextInput.attrs<InputProps>({
 })`
   flex-direction: row;
   align-items: center;
-  padding-left: 0px;
-  padding-bottom: 0px;
+  padding: 0px;
+  width: 100%;
 `;

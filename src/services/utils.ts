@@ -1,4 +1,3 @@
-import {StringSchema} from 'yup';
 import {OptionalObjectSchema, AnyObject, TypeOfShape} from 'yup/lib/object';
 
 export function wait(milliseconds: number) {

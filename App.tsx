@@ -1,7 +1,7 @@
-import { NavigationContainer } from '@react-navigation/native';
+import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
 import AppContainer from './src';
-import { AuthProvider } from './src/contexts/auth/AuthContext';
+import {AuthProvider} from './src/contexts/auth/AuthContext';
 
 const App = () => {
   return (
@@ -12,6 +12,5 @@ const App = () => {
     </NavigationContainer>
   );
 };
-
 
 export default App;

@@ -12,7 +12,6 @@ interface CarouselItemProps {
   };
 }
 
-
 export default function CarouselItem({step}: CarouselItemProps) {
   return (
     <Content>
@@ -39,4 +38,5 @@ const Header = styled.Text`
   color: ${colors.black};
   font-size: 24px;
   line-height: 32px;
+  padding-top: 24px;
 `;

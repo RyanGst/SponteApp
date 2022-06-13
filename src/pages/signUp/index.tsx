@@ -1,14 +1,10 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {
-  KeyboardAvoidingView,
-  TextInput,
-  TouchableOpacity,
-} from 'react-native';
+import {KeyboardAvoidingView, TextInput, TouchableOpacity} from 'react-native';
 import Button from '../../components/Button';
 import {Container} from '../../components/Container';
 import Input from '../../components/Input';
 import {Form, Header, TextContainer} from './components/form/styles';
-import { Paragraph } from "../../components/Text/Paragraph";
+import {Paragraph} from '../../components/Text/Paragraph';
 import {Formik} from 'formik';
 import validationService from '../../services/validators';
 import {getAllErrorsForSchema} from '../../services/utils';
@@ -21,7 +17,7 @@ import ProgressComponent from './components/errors/progress';
 import {colors} from '../../styles';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {errors as errorsContants} from '../../config/contants';
-import { useAuth } from '../../contexts/auth/AuthContext';
+import {useAuth} from '../../contexts/auth/AuthContext';
 
 export default function SignUp() {
   const [secure, isSecure] = useState(true);
@@ -89,7 +85,9 @@ export default function SignUp() {
                     <ErrorsBox>
                       {Array.isArray(errors.password) &&
                         Object.values(errorsContants).map((error, index) => (
-                          <ErrorsText key={index} activeError={errors.password?.includes(error)}>
+                          <ErrorsText
+                            key={index}
+                            activeError={errors.password?.includes(error)}>
                             {error}
                           </ErrorsText>
                         ))}

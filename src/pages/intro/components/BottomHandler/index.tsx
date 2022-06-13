@@ -14,7 +14,10 @@ interface HandlerComponentProps {
 export default function HandlerComponent(props: HandlerComponentProps) {
   return (
     <ButtonContainer>
-      <Button style={{height: 48, width: 48}} isFadded onPress={props.onPressBack}>
+      <Button
+        style={{height: 48, width: 48}}
+        isFadded
+        onPress={props.onPressBack}>
         <Icon name="arrow-left" color={colors.darkGray} size={16} />
       </Button>
       <DotContainer>
@@ -22,7 +25,10 @@ export default function HandlerComponent(props: HandlerComponentProps) {
           <Dot key={key} isCurrent={key == props.currentStep} />
         ))}
       </DotContainer>
-      <Button style={{height: 48, width: 48}} isFilled onPress={props.onPressContinue}>
+      <Button
+        style={{height: 48, width: 48}}
+        isFilled
+        onPress={props.onPressContinue}>
         <Icon name="arrow-right" color={colors.background} size={16} />
       </Button>
     </ButtonContainer>

@@ -20,4 +20,3 @@ export const Form = styled.View`
   align-items: center;
   padding: 16px 16px 32px;
 `;
-
